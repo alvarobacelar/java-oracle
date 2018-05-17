@@ -1,4 +1,4 @@
-FROM buildpack-deps:wheezy-curl
+FROM buildpack-deps:jessie-curl
 
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
 	 apt-get update && apt-get install -y  \
@@ -6,11 +6,11 @@ RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true 
 		unzip \
 		xz-utils \
 		software-properties-common \
-		python-software-properties \
+		dirmngr \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV LANG C.UTF-8
-RUN add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main"
+RUN add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" 
 
 # RUN echo  "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" >> /etc/apt/sources.list
 
